@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { HeaderComponent } from './COMPONENT/UNCHANGED/header/header.component';
 import { FooterComponent } from './COMPONENT/UNCHANGED/footer/footer.component';
 import { MenuComponent } from './COMPONENT/UNCHANGED/menu/menu.component';
-import { AppRoutingModule } from './app-routing.module';
+import { PageNotFoundComponent } from './COMPONENT/UNCHANGED/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -14,7 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
         AppComponent,
         FooterComponent,
         MenuComponent,
-
+        PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
