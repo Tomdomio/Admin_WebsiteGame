@@ -41,8 +41,6 @@ export class ThemComponent extends BaseComponent implements OnInit {
           };
         this._api.post('/api/TheLoai/create-theloai',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
-          this.search();
-          this.closeModal();
           });
       });
     } else { 
@@ -55,10 +53,9 @@ export class ThemComponent extends BaseComponent implements OnInit {
           };
         this._api.post('/api/TheLoai/update-theloai',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
-          this.search();
-          this.closeModal();
           });
       });
     }
    
   } 
+}
