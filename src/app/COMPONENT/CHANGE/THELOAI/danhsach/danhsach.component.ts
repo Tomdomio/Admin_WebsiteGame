@@ -17,6 +17,8 @@ export class DanhsachComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this._api.get('api/TheLoai/get-theloai').takeUntil(this.unsubscribe).subscribe(res => {
       this.danhsachloai = res;
+     
+      console.log(this.danhsachloai);
     }); 
   }
 }

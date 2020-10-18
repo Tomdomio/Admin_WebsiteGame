@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
+// host ở đâu @@ giống của ông giáo
 export class ApiService {
   public host = environment.apiUrl;
   constructor(private _http: HttpClient, public router: Router) {}
