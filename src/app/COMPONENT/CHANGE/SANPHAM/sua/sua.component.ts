@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-them',
-  templateUrl: './them.component.html',
+  selector: 'app-sua',
+  templateUrl: './sua.component.html',
 })
-export class ThemComponent implements OnInit {
+export class SuaComponent implements OnInit {
 
   constructor() { }
 

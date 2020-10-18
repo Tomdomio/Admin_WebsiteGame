@@ -1,0 +1,87 @@
+<div style="width: 800px; height: 600px; margin-left:400px;">
+    <div class="templatemo-content-widget white-bg">
+    <form action="#" class="templatemo-login-form" method="POST" enctype="multipart/form-data">
+      <h2 class="margin-bottom-10" style="text-align: center;">Thêm tài khoản game</h2>
+      <hr style="width: 100%; background-color:red;"/>
+          <!-- {{-- form thêm --}} -->
+      <div class="row form-group">
+        <div class="col-lg-6 col-md-6 form-group" style="padding-bottom: 30px;">            
+          <label class="control-label" for="inputNote" style="float: left;"><b> Chọn thể loại</b></label>
+          <div  style="padding-left: 150px; width: 900px;">
+            <select class="form-control" name="TheLoai">
+                <option value=""> Thể loại</option>
+                <option value="id"> TenTheLoai</option>
+            </select>
+          </div>
+          <!-- {{-- Tên  nhân vật --}} -->
+            <div style="margin-top: 10px;">
+                <label class="control-label" for="inputNote" style="float: left;">
+                <b>Tên nhân vật :</b></label>
+                <div  style="padding-left: 150px;">
+                <input class="form-control" name="TenNV" placeholder="Nhập tên nhân vật"/>
+                </div>
+            </div>
+            <!-- {{-- Tài Khoản --}} -->
+            <div style="margin-top: 10px;">
+                <label class="control-label" for="inputNote" style="float: left;">
+                <b>Tài khoản :</b></label>
+                <div  style="padding-left: 150px;">
+                <input class="form-control" name="TaiKhoan" placeholder="Nhập tài khoản nhân vật"/>
+                </div>
+            </div>
+            <!-- {{-- Mật Khẩu --}} -->
+            <div style="margin-top: 10px;">
+                <label class="control-label" for="inputNote" style="float: left;">
+                <b>Mật Khẩu :</b></label>
+                <div  style="padding-left: 150px;">
+                <input class="form-control" name="MatKhau" placeholder="Nhập mật khẩu nhân vật"/>
+                </div>
+            </div>
+            <!-- {{-- Phái --}} -->
+            <div style="margin-top: 10px;">
+                <label class="control-label" for="inputNote" style="float: left;"><b>Phái :</b></label> 
+                <div  style="padding-left: 150px;">
+                <input class="form-control" name="Phai" placeholder="Nhập phái nhân vật">
+                </div>
+            </div>
+            <!-- {{-- Cấp độ --}} -->
+            <div style="margin-top: 10px;">
+                <label class="control-label" for="inputNote"style="float: left;"><b>Cấp độ :</b></label>
+                <div  style="padding-left: 150px;">
+                <input class="form-control" name="CapDo" placeholder="Nhập cấp độ nhân vật">
+                </div>
+            </div>
+            <!-- {{-- Sever --}} -->
+            <div style="margin-top: 10px;">
+                <label class="control-label" for="inputNote"style="float: left;"><b>Sever :</b></label>
+                <div  style="padding-left: 150px;">
+                <input class="form-control" name="Sever" placeholder="Nhập sever game">
+                </div>
+            </div>
+            <!-- {{-- Giá Bán --}} -->
+            <div style="margin-top: 10px;">
+                <label class="control-label" for="inputNote"style="float: left;"><b>Giá bán :</b>
+                </label>
+                <div  style="padding-left: 150px;">
+                    <input class="control-label" name="Giaban" placeholder="Nhập giá bán">
+                </div>
+            </div>
+        </div>
+    </div>
+      <!-- {{-- Up Ảnh --}} -->
+      <div class="row form-group" style="float: right; margin-top: -200px;">
+        <div class="col-lg-12">
+          <label class="control-label templatemo-block"style="float: left;"><b> Tải ảnh lên</b></label> 
+          <div style="padding-left: 110px;">
+            <input type="file" name="Hinh" class="filestyle" data-buttonName="btn-primary" data-buttonBefore="true" data-icon="false"  >
+          </div>
+          <p style="padding-left: 120px;">Kích thước ảnh tối đa là 5 MB.</p>
+        </div>
+      </div>
+        <div class="form-group text-right">
+          <button type="submit" class="templatemo-blue-button">Thêm</button>
+          <button type="reset" class="templatemo-white-button" style="margin-left: 10px;">Làm mới</button>
+        </div>                           
+      </form>
+    </div>
+  </div>

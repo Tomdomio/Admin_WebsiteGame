@@ -4,22 +4,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HeaderComponent } from './COMPONENT/UNCHANGED/header/header.component';
-import { FooterComponent } from './COMPONENT/UNCHANGED/footer/footer.component';
 import { MenuComponent } from './COMPONENT/UNCHANGED/menu/menu.component';
 import { PageNotFoundComponent } from './COMPONENT/UNCHANGED/page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   declarations: [
         HeaderComponent,
         AppComponent,
-        FooterComponent,
         MenuComponent,
         PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

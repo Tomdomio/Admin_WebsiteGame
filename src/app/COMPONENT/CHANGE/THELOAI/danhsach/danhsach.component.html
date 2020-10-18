@@ -1,4 +1,4 @@
-<div id="content" style="width: 1097px; height: 10px;">
+<div id="content" style="width: 1097px;">
 <ul class="breadcrumb">
 <li>
     <i class="icon-home"></i>
@@ -28,27 +28,28 @@
                 </tr>
             </thead>   
             <tbody>
-                <!-- in -->
-                <tr>
-                    <td>id</td>
-                    <td class="center">TenTheLoai</td>
-                    <td>
-                    <img width="100px; " src=""/>
-                    </td>
-                    <td>time</td>
-                    <td>time</td>
-                        <td class="center">
-                            <a class="btn btn-success" href="#">
-                                <i class="halflings-icon white zoom-in"></i>  
-                            </a>
-                            <a class="btn btn-info" href="">
-                                <i class="halflings-icon white edit"></i>  
-                            </a>
-                            <a class="btn btn-danger" href="">
-                                <i class="halflings-icon white trash"></i> 
-                            </a>
+                <ng-container *ngFor="let tl of theloai">
+                    <tr>
+                        <td>{{ tl.id }}</td>
+                        <td class="center">{{ tl.tenTheLoai }}</td>
+                        <td>
+                        <img width="100px; " src="{{ tl.image }}"/>
                         </td>
-                    </tr>
+                        <td>time</td>
+                        <td>time</td>
+                            <td class="center">
+                                <a class="btn btn-success" href="#">
+                                    <i class="halflings-icon white zoom-in"></i>  
+                                </a>
+                                <a class="btn btn-info" href="">
+                                    <i class="halflings-icon white edit"></i>  
+                                </a>
+                                <a class="btn btn-danger" href="">
+                                    <i class="halflings-icon white trash"></i> 
+                                </a>
+                            </td>
+                        </tr>
+                </ng-container>
                 </tbody>
             </table>            
         </div>
