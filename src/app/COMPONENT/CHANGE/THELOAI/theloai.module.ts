@@ -12,10 +12,14 @@ const routesConfig: Routes =[
 ];
 
 @NgModule({
-  declarations: [ThemComponent,DanhsachComponent],
+  declarations: [
+    ThemComponent,
+    DanhsachComponent
+],
   imports: [
     CommonModule,
-    RouterModule.forChild(routesConfig),FormsModule
-  ]
+    RouterModule.forChild(routesConfig),
+    FormsModule
+],
 })
 export class THELOAIModule { }

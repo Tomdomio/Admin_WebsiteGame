@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ThemComponent } from './them/them.component';
 import { DanhsachComponent } from './danhsach/danhsach.component';
 import { SuaComponent } from './sua/sua.component';
+import { FormsModule } from '@angular/forms';
 
 
 const routesConfig: Routes =[
@@ -16,10 +17,15 @@ const routesConfig: Routes =[
 ];
 
 @NgModule({
-  declarations: [],
+  declarations: [ 
+    ThemComponent, 
+    DanhsachComponent,
+    SuaComponent
+  ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routesConfig)
+    RouterModule.forChild(routesConfig),
+    FormsModule
   ]
 })
 export class SANPHAMModule { }

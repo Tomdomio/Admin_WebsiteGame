@@ -10,9 +10,9 @@
 <div class="row-fluid sortable">		
 <div class="box span12">
     <div class="box-header" data-original-title>
-        <h2><i class="halflings-icon white user"></i><span class="break"></span>Tên Thể Loại</h2>
+        <h2><i class="halflings-icon white user"></i><span class="break"></span>Danh sách sản phẩm</h2>
         <div class="box-icon">
-            <a href="/themsp"><i class="halflings-icon white plus"></i></a>
+            <a routerLink="/themsp"><i class="halflings-icon white plus"></i></a>
         </div>
     </div>
     <div class="box-content">
@@ -24,34 +24,32 @@
                     <th>Tên nhân Vật</th>
                     <th>Tài khoản</th>
                     <th>Mật Khẩu</th>
-                    <th>Phái</th>
-                    <th>Cấp độ</th>
-                    <th>Sever</th>
+                    <th>Rank</th>
+                    <th>Skin</th>
                     <th>Giá bán(vnđ)</th>
                     <th>Ảnh</th>
                     <th>@@</th>
                 </tr>
             </thead>   
             <tbody>
-                <!-- in -->
+                <ng-container *ngFor="let sp of danhsachsp">
                 <tr>
-                    <td>id</td>
-                    <td class="center">idLoaiSP</td>
-                    <td class="center">tenNV</td>
-                    <td class="center">TaiKhoan</td>
-                    <td class="center">MatKhau</td>
-                    <td class="center">Phai</td>				
+                    <td>{{ sp.id }}</td>
+                    <td class="center">{{ sp.id_TheLoai}}</td>
+                    <td class="center">{{ sp.tenNV }}</td>
+                    <td class="center">{{ sp.account }}</td>
+                    <td class="center">{{ sp.password }}</td>			
                     <td class="center">
-                        <span class="label label-success">CapDo</span>
+                        <span class="label label-success">{{ sp.rank }}</span>
                     </td>
                     <td class="center">
-                        <span class="label label-success">Sever</span>
+                        <span class="label label-success">{{ sp.skin }}</span>
                         </td>
                         <td class="center">
-                            <span class="label label-success">Giaban</span>
+                            <span class="label label-success">{{ sp.giaban | currency: "VND" }}</span>
                         </td>
                         <td class="center">
-                            <img width="120px;" src="Upload/TEAMOBI/"/>
+                            <img width="120px;" src="{{ sp.image }}"/>
                         </td>
                         <td class="center">
                             <a class="btn btn-success" href="">
@@ -65,6 +63,7 @@
                             </a>
                         </td>
                     </tr>
+                </ng-container>
                 </tbody>
             </table>            
         </div>
