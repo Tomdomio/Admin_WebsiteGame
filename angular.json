@@ -24,9 +24,22 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/assets/css/bootstrap.min.css",
+              "src/assets/font-awesome/4.2.0/css/font-awesome.min.css",      
+              "src/assets/fonts/fonts.googleapis.com.css",        
+              "src/assets/css/ace.min.css",
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "src/styles.css"      
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery.2.1.1.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/ace-elements.min.js", 
+              "src/assets/js/ace-extra.min.js",
+              "src/assets/js/ace.min.js"                       
+            ]
           },
           "configurations": {
             "production": {
@@ -123,6 +136,6 @@
   },
   "defaultProject": "admin",
   "cli": {
-    "analytics": "ddb3aa02-6ed2-4212-8e68-7e9faf9d85d2"
+    "analytics": "9e4174ca-a4c0-4af9-aca4-6db3b02da64f"
   }
 }

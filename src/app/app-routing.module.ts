@@ -1,45 +1,29 @@
+import { MainComponent } from './main/main.component';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { LoginComponent } from './login/login.component';
+import { FileNotFoundComponent } from './shared/file-not-found/file-not-found.component';
+import { AuthGuard } from './lib/auth.guard';
 
-import { HomeComponent } from './COMPONENT/CHANGE/home/home.component';
-import { PageNotFoundComponent } from './COMPONENT/UNCHANGED/page-not-found/page-not-found.component';
-
-import { SANPHAMModule } from './COMPONENT/CHANGE/SANPHAM/sanpham.module';
-import { DICHVUModule } from './COMPONENT/CHANGE/DICHVU/dichvu.module';
-import { USERModule } from './COMPONENT/CHANGE/USER/user.module';
-import { ANHSPModule } from './COMPONENT/CHANGE/ANHSP/anhsp.module';
-import { THELOAIModule } from './COMPONENT/CHANGE/THELOAI/theloai.module';
-
-
-const routesConfig: Routes = [
-  { path: '', redirectTo: '/home', pathMatch :'full'},
-  { path: 'home', component: HomeComponent },
-//Thể Loại
-  {path:'theloai', loadChildren:() => import('./COMPONENT/CHANGE/THELOAI/theloai.module').then(m => m.THELOAIModule)},
-//Sản Phẩm
-  {path:'sanpham', loadChildren:() => import('./COMPONENT/CHANGE/SANPHAM/sanpham.module').then(m => m.SANPHAMModule)},
-//Dịch Vụ
-  {path:'dichvu', loadChildren:() => import('./COMPONENT/CHANGE/DICHVU/dichvu.module').then(m => m.DICHVUModule)},
-//ẢnhSP
-  {path:'anhsp', loadChildren:() => import('./COMPONENT/CHANGE/ANHSP/anhsp.module').then(m => m.ANHSPModule)},
-//User   
-  {path:'user', loadChildren:() => import('./COMPONENT/CHANGE/USER/user.module').then(m => m.USERModule)},
-
-  { path: '**', component: PageNotFoundComponent }
+const routes: Routes = [
+  {
+    path: '',
+    loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: '**',
+    component: FileNotFoundComponent,
+  }, 
 ];
-
 @NgModule({
-  declarations: [],
   imports: [
-    CommonModule,
-    THELOAIModule,
-    SANPHAMModule,
-    ANHSPModule,
-    DICHVUModule,
-    USERModule,
-    RouterModule.forRoot(routesConfig)
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [ RouterModule ]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
