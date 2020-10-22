@@ -38,7 +38,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   }
 
   loadPage(page) { 
-    this._api.post('/api/users/search',{page: page, pageSize: this.pageSize}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/User/search',{page: page, pageSize: this.pageSize}).takeUntil(this.unsubscribe).subscribe(res => {
       this.users = res.data;
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
@@ -48,7 +48,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   search() { 
     this.page = 1;
     this.pageSize = 5;
-    this._api.post('/api/users/search',{page: this.page, pageSize: this.pageSize, hoten: this.formsearch.get('hoten').value, taikhoan: this.formsearch.get('taikhoan').value}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/User/search',{page: this.page, pageSize: this.pageSize, hoten: this.formsearch.get('hoten').value, taikhoan: this.formsearch.get('taikhoan').value}).takeUntil(this.unsubscribe).subscribe(res => {
       this.users = res.data;
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
@@ -78,31 +78,29 @@ export class UserComponent extends BaseComponent implements OnInit {
            hoten:value.hoten,
            taikhoan:value.taikhoan,
            matkhau:value.matkhau,
-           Sotien:value=0,
+           SoTien:value==0,
            role:value.role,         
           };
-        this._api.post('/api/users/create-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        this._api.post('/api/User/create-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
           this.search();
           this.closeModal();
+          console.log(res)
           });
       });
     } else { 
       this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
         let data_image = data == '' ? null : data;
         let tmp = {
-           image_url:data_image,
+           image:data_image,
            hoten:value.hoten,
-           diachi:value.diachi,
-           gioitinh:value.gioitinh,
-           email:value.email,
            taikhoan:value.taikhoan,
            matkhau:value.matkhau,
+           SoTien:value.SoTien,
            role:value.role,
-           ngaysinh:value.ngaysinh ,
-           user_id:this.user.user_id,          
+           id:this.user.id,          
           };
-        this._api.post('/api/users/update-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        this._api.post('/api/User/update-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
           this.search();
           this.closeModal();
@@ -113,7 +111,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   } 
 
   onDelete(row) { 
-    this._api.post('/api/users/delete-user',{user_id:row.user_id}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/User/delete-user',{id:row.id}).takeUntil(this.unsubscribe).subscribe(res => {
       alert('Xóa thành công');
       this.search(); 
       });
@@ -123,11 +121,7 @@ export class UserComponent extends BaseComponent implements OnInit {
     this.user = null;
     this.formdata = this.fb.group({
       'hoten': ['', Validators.required],
-      'ngaysinh': [this.today, Validators.required],
-      'diachi': [''],
-      'gioitinh': [this.genders[0].value, Validators.required],
-      'email': ['', [Validators.required,Validators.email]],
-      'taikhoan': ['', Validators.required],
+      'SoTien': 0,
       'matkhau': ['', [this.pwdCheckValidator]],
       'nhaplaimatkhau': ['', Validators.required],
       'role': [this.roles[0].value, Validators.required],
@@ -146,9 +140,7 @@ export class UserComponent extends BaseComponent implements OnInit {
       this.formdata = this.fb.group({
         'hoten': ['', Validators.required],
         'ngaysinh': ['', Validators.required],
-        'diachi': [''],
-        'gioitinh': ['', Validators.required],
-        'email': ['', [Validators.required,Validators.email]],
+        'SoTien': 0,
         'taikhoan': ['', Validators.required],
         'matkhau': ['', [this.pwdCheckValidator]],
         'nhaplaimatkhau': ['', Validators.required],
@@ -156,8 +148,6 @@ export class UserComponent extends BaseComponent implements OnInit {
       }, {
         validator: MustMatch('matkhau', 'nhaplaimatkhau')
       });
-      this.formdata.get('ngaysinh').setValue(this.today);
-      this.formdata.get('gioitinh').setValue(this.genders[0].value); 
       this.formdata.get('role').setValue(this.roles[0].value);
       this.doneSetupForm = true;
     });
@@ -169,15 +159,11 @@ export class UserComponent extends BaseComponent implements OnInit {
     this.isCreate = false;
     setTimeout(() => {
       $('#createUserModal').modal('toggle');
-      this._api.get('/api/users/get-by-id/'+ row.user_id).takeUntil(this.unsubscribe).subscribe((res:any) => {
+      this._api.get('/api/User/get-by-id/'+ row.id).takeUntil(this.unsubscribe).subscribe((res:any) => {
         this.user = res; 
-        let ngaysinh = new Date(this.user.ngaysinh);
           this.formdata = this.fb.group({
             'hoten': [this.user.hoten, Validators.required],
-            'ngaysinh': [ngaysinh, Validators.required],
-            'diachi': [this.user.diachi],
-            'gioitinh': [this.user.gioitinh, Validators.required],
-            'email': [this.user.email, [Validators.required,Validators.email]],
+            'Sotien': [this.user.SoTien],
             'taikhoan': [this.user.taikhoan, Validators.required],
             'matkhau': [this.user.matkhau, [this.pwdCheckValidator]],
             'nhaplaimatkhau': [this.user.matkhau, Validators.required],
