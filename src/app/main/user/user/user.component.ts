@@ -38,7 +38,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   }
 
   loadPage(page) { 
-    this._api.post('/api/User/search',{page: page, pageSize: this.pageSize}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/Users/search',{page: page, pageSize: this.pageSize}).takeUntil(this.unsubscribe).subscribe(res => {
       this.users = res.data;
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
@@ -48,7 +48,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   search() { 
     this.page = 1;
     this.pageSize = 5;
-    this._api.post('/api/User/search',{page: this.page, pageSize: this.pageSize, hoten: this.formsearch.get('hoten').value, taikhoan: this.formsearch.get('taikhoan').value}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/Users/search',{page: this.page, pageSize: this.pageSize, hoten: this.formsearch.get('hoten').value, taikhoan: this.formsearch.get('taikhoan').value}).takeUntil(this.unsubscribe).subscribe(res => {
       this.users = res.data;
       console.log(this.users);
       this.totalRecords =  res.totalItems;
@@ -82,7 +82,7 @@ export class UserComponent extends BaseComponent implements OnInit {
            sotien:value = 0   
           };
           console.log(tmp);
-        this._api.post('/api/User/create-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        this._api.post('/api/Users/create-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
           this.search();
           this.closeModal();
@@ -96,7 +96,7 @@ export class UserComponent extends BaseComponent implements OnInit {
           sotien:value = 0,   
            id:this.user.id,          
           };
-        this._api.post('/api/User/update-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        this._api.post('/api/Users/update-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
           this.search();
           this.closeModal();
@@ -106,7 +106,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   } 
 
   onDelete(row) { 
-    this._api.post('/api/User/delete-user',{id:row.id}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/Users/delete-user',{id:row.id}).takeUntil(this.unsubscribe).subscribe(res => {
       alert('Xóa thành công');
       this.search(); 
       });
@@ -152,7 +152,7 @@ export class UserComponent extends BaseComponent implements OnInit {
     this.isCreate = false;
     setTimeout(() => {
       $('#createUserModal').modal('toggle');
-      this._api.get('/api/User/get-by-id/'+ row.id).takeUntil(this.unsubscribe).subscribe((res:any) => {
+      this._api.get('/api/Users/get-by-id/'+ row.id).takeUntil(this.unsubscribe).subscribe((res:any) => {
         this.user = res; 
         console.log(this.user);
           this.formdata = this.fb.group({
