@@ -7,7 +7,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtInterceptor } from './lib/jwt.interceptor';
 import { AuthGuard } from './lib/auth.guard';
 import { LoginComponent } from './login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { RoleGuard } from './lib/auth.guard';
 import { Role } from './models/role';
@@ -37,7 +37,8 @@ const routes: Routes = [
     HttpClientModule,
     ReactiveFormsModule,
     SharedModule,
-    NgbModule
+    NgbModule,
+    FormsModule
   ],
   exports: [RouterModule],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],

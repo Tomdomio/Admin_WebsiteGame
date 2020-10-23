@@ -79,7 +79,7 @@ export class UserComponent extends BaseComponent implements OnInit {
            taikhoan:value.taikhoan,
            matkhau:value.matkhau,
            role:value.role,    
-           sotien:value = 0   
+           sotien:value = "0"
           };
           console.log(tmp);
         this._api.post('/api/Users/create-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
@@ -93,7 +93,7 @@ export class UserComponent extends BaseComponent implements OnInit {
           taikhoan:value.taikhoan,
           matkhau:value.matkhau,
           role:value.role,
-          sotien:value = 0,   
+          sotien:value = "0",   
            id:this.user.id,          
           };
         this._api.post('/api/Users/update-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
@@ -138,6 +138,7 @@ export class UserComponent extends BaseComponent implements OnInit {
         'matkhau': ['', Validators.required],
         'nhaplaimatkhau': ['', Validators.required],
         'role': ['', Validators.required],
+        'sotien': ['0']
       }, {
         validator: MustMatch('matkhau', 'nhaplaimatkhau')
       });
@@ -161,6 +162,7 @@ export class UserComponent extends BaseComponent implements OnInit {
             'matkhau': [this.user.password,  Validators.required],
             'nhaplaimatkhau': [this.user.password, Validators.required],
             'role': [this.user.level, Validators.required],
+            'sotien': ['0']
           }, {
             validator: MustMatch('matkhau', 'nhaplaimatkhau')
           }); 
