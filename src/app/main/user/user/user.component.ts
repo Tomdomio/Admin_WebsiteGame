@@ -8,7 +8,6 @@ declare var $: any;
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css'],
 })
 export class UserComponent extends BaseComponent implements OnInit {
   public users: any;
@@ -94,7 +93,7 @@ export class UserComponent extends BaseComponent implements OnInit {
           matkhau:value.matkhau,
           role:value.role,
           sotien:value = "0",   
-           id:this.user.id,          
+          id:this.user.id,          
           };
         this._api.post('/api/Users/update-user',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
@@ -158,17 +157,17 @@ export class UserComponent extends BaseComponent implements OnInit {
         console.log(this.user);
           this.formdata = this.fb.group({
             'hoten': [this.user.hoten, Validators.required],
-            'taikhoan': [this.user.username, Validators.required],
-            'matkhau': [this.user.password,  Validators.required],
-            'nhaplaimatkhau': [this.user.password, Validators.required],
-            'role': [this.user.level, Validators.required],
+            'taikhoan': [this.user.taikhoan, Validators.required],
+            'matkhau': [this.user.matkhau,  Validators.required],
+            'nhaplaimatkhau': [this.user.matkhau, Validators.required],
+            'role': [this.user.role, Validators.required],
             'sotien': ['0']
           }, {
             validator: MustMatch('matkhau', 'nhaplaimatkhau')
           }); 
           this.doneSetupForm = true;
         }); 
-    }, 700);
+    }, 900);
   }
 
   closeModal() {

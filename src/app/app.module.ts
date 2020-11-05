@@ -4,6 +4,7 @@ import { Routes, RouterModule,  PreloadAllModules } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorInterceptor } from './lib/error.interceptor'
 import { JwtInterceptor } from './lib/jwt.interceptor';
 import { AuthGuard } from './lib/auth.guard';
 import { LoginComponent } from './login/login.component';
@@ -41,7 +42,8 @@ const routes: Routes = [
     FormsModule
   ],
   exports: [RouterModule],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+              { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -32,6 +32,11 @@ export const mainRoutes: Routes = [
             import('./user/user.module').then((m) => m.UserModule),
           canActivate: [RoleGuard],
         },
+        {
+          path: 'product',
+          loadChildren: () =>
+            import('./product/product.module').then((m) => m.ProductModule),
+        },
       ]
   }
 ];
@@ -42,7 +47,6 @@ export const mainRoutes: Routes = [
     DashbroadComponent,
     MainComponent,
     SidebarComponent,
-    
   ],
   imports: [
     SharedModule,
