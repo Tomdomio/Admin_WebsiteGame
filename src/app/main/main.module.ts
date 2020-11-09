@@ -12,6 +12,7 @@ import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { UnauthorizedComponent } from '../shared/unauthorized/unauthorized.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { CateComponent } from './cate/cate/cate.component';
 
 
 
@@ -37,6 +38,11 @@ export const mainRoutes: Routes = [
           loadChildren: () =>
             import('./product/product.module').then((m) => m.ProductModule),
         },
+        {
+          path: 'cate',
+          loadChildren: () =>
+            import('./cate/cate.module').then((m) => m.CateModule),
+        },
       ]
   }
 ];
@@ -47,6 +53,7 @@ export const mainRoutes: Routes = [
     DashbroadComponent,
     MainComponent,
     SidebarComponent,
+    CateComponent,
   ],
   imports: [
     SharedModule,

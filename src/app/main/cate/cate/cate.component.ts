@@ -1,16 +1,15 @@
 import { Component,Injector,OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FileUpload } from 'primeng/fileupload';
-import {FileUploadModule} from 'primeng/fileupload';
 import { BaseComponent } from 'src/app/lib/base.component';
 import 'rxjs/add/operator/takeUntil';
 declare var $: any;
 
 @Component({
-  selector: 'app-product',
-  templateUrl: './product.component.html',
+  selector: 'cate-product',
+  templateUrl: './cate.component.html',
 })
-export class ProductComponent extends BaseComponent implements OnInit {
+export class CateComponent extends BaseComponent implements OnInit {
 
   public theloai: any;
   public sanphams: any;

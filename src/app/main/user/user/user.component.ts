@@ -23,7 +23,7 @@ export class UserComponent extends BaseComponent implements OnInit {
   public isCreate:any;
   submitted = false;
   @ViewChild(FileUpload, { static: false }) file_image: FileUpload;
-  constructor(private fb: FormBuilder, injector: Injector) {
+  constructor(injector: Injector, private fb: FormBuilder) {
     super(injector);
   }
 
