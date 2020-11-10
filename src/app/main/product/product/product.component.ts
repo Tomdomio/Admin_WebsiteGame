@@ -107,9 +107,9 @@ export class ProductComponent extends BaseComponent implements OnInit {
           password:value.password,
           rank:value.rank,
           skin:value.skin,
-          giaban:+value.giaban,
-          trangthai:value=1,
+          giaban:value.giaban,
           id_theloai:value.id_theloai, 
+          trangthai:value = 1,
           id:this.sanpham.id,          
           };
         this._api.post('/api/sanpham/update-sanpham',tmp).takeUntil(this.unsubscribe).subscribe(res => {
@@ -178,7 +178,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
             'id_theloai': [this.sanpham.id_theloai,  Validators.required],
             'skin': [this.sanpham.skin,Validators.required],
             'rank': [this.sanpham.rank, Validators.required],
-            'giaban': [this.sanpham.giaban,  Validators.required],
+            'giaban': [this.sanpham.giaban, Validators.required],
           }); 
           this.doneSetupForm = true;
         }); 

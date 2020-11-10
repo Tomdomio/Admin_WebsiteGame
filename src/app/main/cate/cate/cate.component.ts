@@ -12,8 +12,7 @@ declare var $: any;
 export class CateComponent extends BaseComponent implements OnInit {
 
   public theloai: any;
-  public sanphams: any;
-  public sanpham: any;
+  public theloais: any;
   public totalRecords:any;
   public pageSize = 3;
   public page = 1;
@@ -32,17 +31,15 @@ export class CateComponent extends BaseComponent implements OnInit {
 
   ngOnInit(): void {
     this.formsearch = this.fb.group({
-      'rank': [''],
-      'giaban': [''],     
+      'tentheloai': ['']    
     });
 
-    this._api.get('/api/TheLoai/get-theloai').takeUntil(this.unsubscribe).subscribe(res => {this.theloai = res;});
    this.search();
   }
 
   loadPage(page) { 
-    this._api.post('/api/SanPham/search',{page: page, pageSize: this.pageSize}).takeUntil(this.unsubscribe).subscribe(res => {
-      this.sanphams = res.data;
+    this._api.post('/api/TheLoai/search',{page: page, pageSize: this.pageSize}).takeUntil(this.unsubscribe).subscribe(res => {
+      this.theloais = res.data;
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
       });
@@ -51,21 +48,13 @@ export class CateComponent extends BaseComponent implements OnInit {
   search() { 
     this.page = 1;
     this.pageSize = 5;
-    this._api.post('/api/SanPham/search',{page: this.page, pageSize: this.pageSize, rank: this.formsearch.get('rank').value,
-      giaban: this.formsearch.get('giaban').value}).takeUntil(this.unsubscribe).subscribe(res => {
-      this.sanphams = res.data;
-      console.log(this.sanphams);
+    this._api.post('/api/TheLoai/search',{page: this.page, pageSize: this.pageSize, tentheloai: this.formsearch.get
+      ('tentheloai').value}).takeUntil(this.unsubscribe).subscribe(res => {
+      this.theloais = res.data;
+      console.log(this.theloais);
       this.totalRecords =  res.totalItems;
       this.pageSize = res.pageSize;
       });
-  }
-
-  pwdCheckValidator(control){
-    var filteredStrings = {search:control.value}
-    var result = (new RegExp('[' + filteredStrings.search + ']', 'g') || []);
-    if(control.value.length > 5 || control.value.length < 10 || !result){
-        return {tennv: true};
-    }
   }
 
   get f() { return this.formdata.controls; }
@@ -80,17 +69,10 @@ export class CateComponent extends BaseComponent implements OnInit {
         let data_image = data == '' ? null : data;
         let tmp = {
           image:data_image,
-          tennv:value.tennv,
-          account:value.account,
-          password:value.password,
-          rank:value.rank,
-          skin:value.skin,
-          giaban:value.giaban,
-          id_theloai: value.id_theloai,
-          trangthai:value=1,
+          tentheloai:value.tentheloai,
           };
           console.log(tmp);
-      this._api.post('/api/sanpham/create-sanpham',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+      this._api.post('/api/TheLoai/create-theloai',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Thêm thành công');
           this.search();
           this.closeModal();
@@ -101,17 +83,10 @@ export class CateComponent extends BaseComponent implements OnInit {
         let data_image = data == '' ? null : data;
         let tmp = {
           image:data_image,
-          tennv:value.tennv,
-          account:value.account,
-          password:value.password,
-          rank:value.rank,
-          skin:value.skin,
-          giaban:+value.giaban,
-          trangthai:value=1,
-          id_theloai:value.id_theloai, 
-          id:this.sanpham.id,          
+          tentheloai:value.tentheloai,
+          id:this.theloai.id,          
           };
-        this._api.post('/api/sanpham/update-sanpham',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        this._api.post('/api/TheLoai/update-theloai',tmp).takeUntil(this.unsubscribe).subscribe(res => {
           alert('Cập nhật thành công');
           this.search();
           this.closeModal();
@@ -121,23 +96,16 @@ export class CateComponent extends BaseComponent implements OnInit {
   } 
 
   onDelete(row) { 
-    this._api.post('/api/sanpham/delete-sanpham',{id:row.id}).takeUntil(this.unsubscribe).subscribe(res => {
+    this._api.post('/api/TheLoai/delete-theloai',{id:row.id}).takeUntil(this.unsubscribe).subscribe(res => {
       alert('Xóa thành công');
       this.search(); 
       });
   }
 
   Reset() {  
-    this.sanpham = null;
+    this.theloai = null;
     this.formdata = this.fb.group({
-      'tennv': ['', Validators.required],
-      'account': ['', Validators.required],
-      'password': ['', Validators.required],
-      'rank': ['', Validators.required],
-      'skin': ['',Validators.required,],
-      'id_theloai': ['', Validators.required],
-      'giaban': ['', Validators.required],
-      'trangthai': "1",
+      'tentheloai': ['', Validators.required],
     }); 
   }
 
@@ -145,18 +113,11 @@ export class CateComponent extends BaseComponent implements OnInit {
     this.doneSetupForm = false;
     this.showUpdateModal = true;
     this.isCreate = true;
-    this.sanpham = null;
+    this.theloai = null;
     setTimeout(() => {
       $('#createUserModal').modal('toggle');
       this.formdata = this.fb.group({
-        'tennv': [''],
-        'account': ['', Validators.required],
-        'password': ['', Validators.required],
-        'rank': ['', Validators.required],
-        'skin': ['',Validators.required,],
-        'id_theloai': ['', Validators.required],
-        'giaban': ['', Validators.required],
-        'trangthai': "1",
+        'tentheloai': [''],
       });
       this.doneSetupForm = true;
     });
@@ -168,16 +129,10 @@ export class CateComponent extends BaseComponent implements OnInit {
     this.isCreate = false;
     setTimeout(() => {
       $('#createUserModal').modal('toggle');
-      this._api.get('/api/sanpham/get-by-id/'+ row.id).takeUntil(this.unsubscribe).subscribe((res:any) => {
-        this.sanpham = res; 
+      this._api.get('/api/TheLoai/get-by-id/'+ row.id).takeUntil(this.unsubscribe).subscribe((res:any) => {
+        this.theloai = res; 
           this.formdata = this.fb.group({
-            'tennv': [this.sanpham.tennv,Validators.required],
-            'account': [this.sanpham.account,Validators.required],
-            'password': [this.sanpham.password,  Validators.required],
-            'id_theloai': [this.sanpham.id_theloai,  Validators.required],
-            'skin': [this.sanpham.skin,Validators.required],
-            'rank': [this.sanpham.rank, Validators.required],
-            'giaban': [this.sanpham.giaban,  Validators.required],
+            'tentheloai': [this.theloai.tentheloai,Validators.required],
           }); 
           this.doneSetupForm = true;
         }); 

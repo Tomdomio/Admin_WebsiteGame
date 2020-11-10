@@ -3,7 +3,7 @@
      <div class="row justify-content-center">
         <ul class="breadcrumb">
            <li class="breadcrumb-item"><a href="#">Quản lý</a></li>
-           <li class="breadcrumb-item active">Sản Phẩm</li>
+           <li class="breadcrumb-item active">Thể Loại</li>
         </ul>
         <hr class="mb-4" />
         <div class="nav-search">
@@ -16,27 +16,17 @@
         <table class="table table-striped table-bordered">
             <thead>
               <tr>
-                  <th scope="col">Thể Loại</th>
-                  <th scope="col">Tên Nhân Vật</th>
-                  <th scope="col">Account</th>
-                  <th scope="col">Password</th>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Skin</th>
-                  <th scope="col">Giá Bán</th>
-                  <th scope="col">Trạng Thái</th>
+                  <th scope="col">STT</th>
+                  <th scope="col">Tên Thể Loại</th>
+                  <th scope="col">Image</th>
               </tr>
             </thead>
             <tbody >
-              <ng-container *ngFor="let item of sanphams">
+              <ng-container *ngFor="let item of theloais; let i = index">
               <tr>
-                <td>{{ item.id_theloai }}</td>
-                <td>{{ item.account }}</td>
-                <td>{{ item.password }}</td>
-                <td>{{ item.tennv }}</td>
-                <td>{{ item.rank }}</td>
-                <td>{{ item.skin }}</td>
-                <td>{{ item.giaban }}</td>
-                <td>{{ item.trangthai }}</td>
+                <td>{{ i + 1 }}</td>
+                <td>{{ item.tentheloai }}</td>
+                <td><img style="width: 90px; height: 80px;" src = "{{ item.image }}"></td>
                 <td class="action-col" >
                   <div class="btn-group">
                     <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  
@@ -63,43 +53,15 @@
 <div class="modal-dialog modal-lg full-height-modal">
   <div class="modal-content">
     <div class="modal-header">
-      <h4  *ngIf="isCreate" class="modal-title">Nhập thông tin sản phẩm</h4>
-      <h4 *ngIf="!isCreate" class="modal-title">Sửa thông tin sản phẩm</h4>
+      <h4  *ngIf="isCreate" class="modal-title">Nhập thông tin thể loại</h4>
+      <h4 *ngIf="!isCreate" class="modal-title">Sửa thông tin thể loại</h4>
     </div>
     <form *ngIf="doneSetupForm" [formGroup]="formdata"  (ngSubmit)="onSubmit(formdata.value)" class="form-horizontal utehy-form">
       <div class="modal-body no-padding">
        <div class="row mb-n3">
         <div class="col-md-6 mb-3">
-          <label>Chọn thể loại</label>
-          <select class="custom-select" formControlName="id_theloai">
-           <ng-container *ngFor="let r of theloai">
-           <option value="{{r.id}}">{{r.tentheloai}}</option>
-           </ng-container>
-         </select>
-        </div>
-        <div class="col-md-6 mb-3">
-            <label>Tên nhân vật</label>
-            <input type="text" class="form-control"  formControlName="tennv">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label >Account</label>
-          <input type="text" class="form-control" formControlName="account">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label >Password</label>
-          <input type="text" class="form-control"  formControlName="password">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label >Rank</label>
-          <input type="text" class="form-control"  formControlName="rank">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label >Skin</label>
-          <input type="text" class="form-control"  formControlName="skin">
-        </div>
-        <div class="col-md-6 mb-3">
-          <label >Giá Bán</label>
-          <input type="text" class="form-control"  formControlName="giaban">
+          <label>Tên Thể Loại</label>
+          <input type="text" class="form-control"  formControlName="tentheloai">
         </div>
         <div class="col-md-6 mb-3">
           <label class="col-sm-2 control-label no-padding-right"> Ảnh</label>
