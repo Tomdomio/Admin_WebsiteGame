@@ -15,17 +15,11 @@ import { Role } from './models/role';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
-
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
+  { path: '', loadChildren: () => import('./main/main.module').then((m) => m.MainModule),
     canActivate: [RoleGuard],
   },
-  {
-    path: 'login',
-    component: LoginComponent,
-  },
+  { path: 'login', component: LoginComponent },
 ];
 @NgModule({
   declarations: [

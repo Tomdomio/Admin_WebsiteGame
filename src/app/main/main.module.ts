@@ -13,6 +13,8 @@ import { UnauthorizedComponent } from '../shared/unauthorized/unauthorized.compo
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CateComponent } from './cate/cate/cate.component';
+import { DichvuComponent } from './dichvu/dichvu/dichvu.component';
+import { ImagespComponent } from './imagesp/imagesp/imagesp.component';
 
 
 
@@ -20,29 +22,14 @@ export const mainRoutes: Routes = [
   {
       path: '', component: MainComponent,
       children: [
-        {
-            path: '', component: DashbroadComponent,
-        },
-        {
-          path: 'unauthorized',
-          component: UnauthorizedComponent,
-        },
-        {
-          path: 'user',
-          loadChildren: () =>
-            import('./user/user.module').then((m) => m.UserModule),
-          canActivate: [RoleGuard],
-        },
-        {
-          path: 'product',
-          loadChildren: () =>
-            import('./product/product.module').then((m) => m.ProductModule),
-        },
-        {
-          path: 'cate',
-          loadChildren: () =>
-            import('./cate/cate.module').then((m) => m.CateModule),
-        },
+        { path: '', component: DashbroadComponent },
+        { path: 'unauthorized',component: UnauthorizedComponent },
+        { path: 'user',loadChildren: () =>import('./user/user.module').then((m) => m.UserModule),
+          canActivate: [RoleGuard] },
+        { path: 'product',loadChildren: () =>import('./product/product.module').then((m) => m.ProductModule)},
+        { path: 'cate',loadChildren: () =>import('./cate/cate.module').then((m) => m.CateModule)},
+        { path: 'dichvu',loadChildren: () =>import('./dichvu/dichvu.module').then((m) => m.DichvuModule)},
+        {path: 'imagesp',loadChildren: () =>import('./imagesp/imagesp.module').then((m) => m.ImagespModule)},
       ]
   }
 ];
@@ -54,6 +41,8 @@ export const mainRoutes: Routes = [
     MainComponent,
     SidebarComponent,
     CateComponent,
+    DichvuComponent,
+    ImagespComponent,
   ],
   imports: [
     SharedModule,
