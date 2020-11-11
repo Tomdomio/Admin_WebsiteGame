@@ -5,12 +5,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { DichvuComponent } from './dichvu/dichvu.component';
 
 @NgModule({
-  declarations: [DichvuComponent],
+  declarations: [DichvuComponent, DichvuComponent],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      { path: 'imagesp', component: DichvuComponent },
+      { path: 'dichvu', component: DichvuComponent },
   ]),  
   ]
 })

@@ -12,9 +12,6 @@ import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 import { UnauthorizedComponent } from '../shared/unauthorized/unauthorized.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { CateComponent } from './cate/cate/cate.component';
-import { DichvuComponent } from './dichvu/dichvu/dichvu.component';
-import { ImagespComponent } from './imagesp/imagesp/imagesp.component';
 
 
 
@@ -40,9 +37,6 @@ export const mainRoutes: Routes = [
     DashbroadComponent,
     MainComponent,
     SidebarComponent,
-    CateComponent,
-    DichvuComponent,
-    ImagespComponent,
   ],
   imports: [
     SharedModule,

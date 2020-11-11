@@ -6,7 +6,7 @@ import 'rxjs/add/operator/takeUntil';
 declare var $: any;
 
 @Component({
-  selector: 'cate-product',
+  selector: 'app-cate',
   templateUrl: './cate.component.html',
 })
 export class CateComponent extends BaseComponent implements OnInit {

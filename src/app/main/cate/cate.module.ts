@@ -6,15 +6,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [CateComponent, CateComponent],
   imports: [
     CommonModule,
     SharedModule,
     RouterModule.forChild([
-      {
-        path: 'cate',
-        component: CateComponent,
-      },
+      { path: 'cate', component: CateComponent },
   ]),  
   ]
 })

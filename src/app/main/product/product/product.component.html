@@ -17,13 +17,14 @@
               <thead>
                 <tr>
                     <th scope="col">Thể Loại</th>
-                    <th scope="col">Tên Nhân Vật</th>
+                    <th scope="col">Tên NV</th>
                     <th scope="col">Account</th>
                     <th scope="col">Password</th>
                     <th scope="col">Rank</th>
                     <th scope="col">Skin</th>
-                    <th scope="col">Giá Bán</th>
-                    <th scope="col">Trạng Thái</th>
+                    <th scope="col">Giá</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Image</th>
                 </tr>
               </thead>
               <tbody >
@@ -37,6 +38,7 @@
                   <td>{{ item.skin }}</td>
                   <td>{{ item.giaban }}</td>
                   <td>{{ item.trangthai }}</td>
+                  <td><img style="width: 80px; height:60px;" src="{{ item.image}}"></td>
                   <td class="action-col" >
                     <div class="btn-group">
                       <button title="" class="btn btn-xs btn-white btn-default"  (click)="openUpdateModal(item)">  
@@ -104,7 +106,7 @@
           <div class="col-md-6 mb-3">
             <label class="col-sm-2 control-label no-padding-right"> Ảnh</label>
             <div class="col-sm-10">
-              <p-fileUpload #file_image mode="advanced" [showUploadButton]="false" cancelLabel="Hủy" chooseLabel ="Chọn ảnh"   multiple="false" accept="image/*" maxFileSize="1000000">
+              <p-fileUpload #file_image mode="advanced" [showUploadButton]="false" cancelLabel="Hủy" chooseLabel ="Chọn ảnh"   multiple="false" accept="image/*" maxFileSize="100000000">
                   <ng-template pTemplate="content">
                       <img *ngIf="sanpham && sanpham.image" style="height: 100px;width: 100px;" [src]="sanpham.image">
                   </ng-template>
