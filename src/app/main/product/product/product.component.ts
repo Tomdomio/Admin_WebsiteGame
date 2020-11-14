@@ -15,15 +15,20 @@ export class ProductComponent extends BaseComponent implements OnInit {
   public theloai: any;
   public sanphams: any;
   public sanpham: any;
+  public image: any;
   public totalRecords:any;
   public pageSize = 3;
   public page = 1;
   public uploadedFiles: any[] = [];
   public formsearch: any;
   public formdata: any;
+  public formImage: any;
   public doneSetupForm: any;  
   public showUpdateModal:any;
+  public showCreateModal: any;
   public isCreate:any;
+  public isImage: any;
+  public SetupForm: any;
   submitted = false;
   @ViewChild(FileUpload, { static: false }) file_image: FileUpload;
   
@@ -188,4 +193,38 @@ export class ProductComponent extends BaseComponent implements OnInit {
   closeModal() {
     $('#createUserModal').closest('.modal').modal('hide');
   }
+//ảnh sản phẩm-------------------------------------------------------------------
+    onSubmitImage(value) {
+      this.submitted = true;
+
+    this.getEncodeFromImage(this.file_image).subscribe((data: any): void => {
+      let filedata_image = data == '' ? null : data;
+      let tmp = {
+        image: filedata_image,
+        id_sanpham: value.id_sanpham      
+        };
+        console.log(tmp);
+      this._api.post('/api/ImageSP/create-imagesp',tmp).takeUntil(this.unsubscribe).subscribe(res => {
+        alert('Thêm chi tiết thành công');
+        this.search();
+        this.close();
+        });
+      });
+    }
+  public addImage(row) {
+    this.showCreateModal = true; 
+    setTimeout(() => {
+      $('#createImageModal').modal('toggle');
+      this._api.get('/api/SanPham/get-by-id/'+ row.id).takeUntil(this.unsubscribe).subscribe((res:any) => {
+        this.sanpham = res; 
+          this.formImage = this.fb.group({
+            'id_sanpham': [this.sanpham.id,Validators.required],
+          }); 
+          this.SetupForm = true;
+        }); 
+    }, 700);
+  }
+      close() {
+      $('#createImageModal').closest('.modal').modal('hide');
+    }
 }
