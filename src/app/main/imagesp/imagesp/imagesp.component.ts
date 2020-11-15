@@ -56,4 +56,10 @@ export class ImagespComponent extends BaseComponent implements OnInit {
       this.pageSize = res.pageSize;
       });
   }
+  onDelete(row) { 
+    this._api.post('/api/ImageSP/delete-imagesp',{id:row.id}).takeUntil(this.unsubscribe).subscribe(res => {
+      alert('Xóa thành công');
+      this.search(); 
+      });
+  }
 }

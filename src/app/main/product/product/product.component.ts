@@ -1,7 +1,6 @@
 import { Component,Injector,OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { FileUpload } from 'primeng/fileupload';
-import {FileUploadModule} from 'primeng/fileupload';
 import { BaseComponent } from 'src/app/lib/base.component';
 import 'rxjs/add/operator/takeUntil';
 declare var $: any;
@@ -16,6 +15,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
   public sanphams: any;
   public sanpham: any;
   public image: any;
+  public images: any;
   public totalRecords:any;
   public pageSize = 3;
   public page = 1;
@@ -41,7 +41,7 @@ export class ProductComponent extends BaseComponent implements OnInit {
       'rank': [''],
       'giaban': [''],     
     });
-
+    
     this._api.get('/api/TheLoai/get-theloai').takeUntil(this.unsubscribe).subscribe(res => {this.theloai = res;});
    this.search();
   }

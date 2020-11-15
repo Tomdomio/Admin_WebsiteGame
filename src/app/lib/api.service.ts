@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class ApiService {
   public host = environment.apiUrl;
   constructor(private _http: HttpClient, public router: Router) {}
+  
 
   post(url: string, obj: any) {
     const body = JSON.stringify(obj);
